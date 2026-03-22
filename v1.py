@@ -803,13 +803,13 @@ with st.sidebar:
     
     st.markdown(f"""
     <div style='text-align:center; padding:16px; background:rgba(255,255,255,0.12); border-radius:14px; margin:12px 0;'>
-      <div style='font-size:2.5rem; font-weight:900;'>⭐ {st.session_state.points}</div>
+      <div style='font-size:2.5rem; font-weight:900;'>&#11088; {st.session_state.points}</div>
       <div style='font-size:0.85rem; opacity:0.8;'>積分</div>
     </div>
     """, unsafe_allow_html=True)
     
     if st.session_state.streak > 0:
-        st.markdown(f"🔥 連勝 {st.session_state.streak} 題!")
+        st.markdown(f"&#128293; 連勝 {st.session_state.streak} 題!")
     
     st.markdown("---")
     st.markdown("### 📖 選擇模式")
@@ -870,8 +870,13 @@ if "主頁" in mode:
     with col4:
         st.markdown("""
         <div class='lesson-card red'>
-          <div style='font-size
-    
+          <div style='font-size:2rem;'>&#128202;</div>
+          <h3 style='margin:8px 0 4px;'>&#23416;&#32244;&#27511;&#21490;</h3>
+          <p style='color:#666; font-size:0.9rem;'>Google Sheets &#20132;&#20856;<br>&#35352;&#37636;&#27599;&#27425;&#20998;&#25976;&#36914;&#27493;!</p>
+          <span class='level-badge level-1'>&#33258;&#21205;&#20132;&#20856;</span>
+        </div>
+        """, unsafe_allow_html=True)
+
     st.markdown("---")
     st.markdown("### 🎯 今日挑戰")
     
@@ -941,7 +946,7 @@ elif "系統課程" in mode:
                     <div>
                       <div class='bubble-label' style='margin-left:20px;'>{d['speaker']}</div>
                       <div class='bubble-uk'>
-                        <strong>🔊 {d['en']}</strong><br>
+                        <strong>&#128266; {d['en']}</strong><br>
                         <span style='opacity:0.8; font-size:0.9rem;'>{d['cantonese']}</span>
                       </div>
                     </div>
@@ -951,7 +956,7 @@ elif "系統課程" in mode:
                     <div style='text-align:right;'>
                       <div class='bubble-label' style='margin-right:20px;'>{d['speaker']}</div>
                       <div class='bubble-hk'>
-                        <strong>🗣️ {d['en']}</strong><br>
+                        <strong>&#128483;&#65039; {d['en']}</strong><br>
                         <span style='opacity:0.8; font-size:0.9rem;'>{d['cantonese']}</span>
                       </div>
                       <div class='clear'></div>
@@ -960,7 +965,7 @@ elif "系統課程" in mode:
                 
                 st.markdown(f"""
                 <div class='tip-box'>
-                  <span class='tip-icon'>💡</span> {d['tip']}
+                  <span class='tip-icon'>&#128161;</span> {d['tip']}
                 </div>
                 """, unsafe_allow_html=True)
             
@@ -1005,13 +1010,13 @@ elif "系統課程" in mode:
                 if st.button(f"確認答案 ✓", key=f"btn_{qkey}"):
                     chosen_idx = q["options"].index(choice)
                     if chosen_idx == q["ans"]:
-                        st.markdown(f"""<div class='correct-box'>✅ 答對了!+10分<br><small>{q['explain']}</small></div>""", unsafe_allow_html=True)
+                        st.markdown(f"""<div class='correct-box'>&#9989; 答對了!+10分<br><small>{q['explain']}</small></div>""", unsafe_allow_html=True)
                         if qkey not in st.session_state.quiz_answers:
                             add_points(10)
                             st.session_state.quiz_answers[qkey] = True
                             log_activity("quiz", lesson["title"], 100, 10, q["q"][:80])
                     else:
-                        st.markdown(f"""<div class='wrong-box'>❌ 差少少!答案係：<strong>{q['options'][q['ans']]}</strong><br><small>{q['explain']}</small></div>""", unsafe_allow_html=True)
+                        st.markdown(f"""<div class='wrong-box'>&#10060; 差少少!答案係：<strong>{q['options'][q['ans']]}</strong><br><small>{q['explain']}</small></div>""", unsafe_allow_html=True)
                         all_correct = False
                         if qkey not in st.session_state.quiz_answers:
                             st.session_state.quiz_answers[qkey] = False
@@ -1019,7 +1024,7 @@ elif "系統課程" in mode:
             # Complete lesson
             col1, col2 = st.columns([2,1])
             with col1:
-                if st.button(f"✅ 完成呢課!+15分", key=f"complete_{lesson_key}", use_container_width=True):
+                if st.button(f"&#9989; 完成呢課!+15分", key=f"complete_{lesson_key}", use_container_width=True):
                     if lesson_key not in st.session_state.completed:
                         st.session_state.completed.add(lesson_key)
                         add_points(15)
@@ -1226,7 +1231,7 @@ elif "對話練習" in mode:
       <p>📍 {scene["subtitle"]}</p>
       <p style='margin-top:10px; font-size:1rem; background:rgba(255,255,255,0.12);
                 border-radius:10px; padding:10px 14px; display:inline-block;'>
-        📖 {scene["intro"]}
+        &#128214; {scene["intro"]}
       </p>
     </div>""", unsafe_allow_html=True)
 
@@ -1279,7 +1284,7 @@ elif "對話練習" in mode:
           </div>
           <div class='step-content'>
             <div class='step-role'>{step["speaker"]} {"👈 你嘅回合!" if is_mine and active else ""}</div>
-            <div class='step-en'>{"🔒 待解鎖" if future else ("🗣️ " if is_mine else "🔊 ") + step["en"]}</div>
+            <div class='step-en'>{"🔒 待解鎖" if future else ("&#128483;&#65039; " if is_mine else "&#128266; ") + step["en"]}</div>
             {"" if future else f'<div class="step-zh">{step["zh"]}</div>'}
           </div>
         </div>""", unsafe_allow_html=True)
@@ -1311,7 +1316,7 @@ elif "對話練習" in mode:
                         f'<span class="hint-chip">"{h}"</span>'
                         for h in step["hints"]
                     )
-                    st.markdown(f"💡 關鍵詞：{hints_html}", unsafe_allow_html=True)
+                    st.markdown(f"&#128161; 關鍵詞：{hints_html}", unsafe_allow_html=True)
 
             # ── If it's the user's turn and it's active ──
             if is_mine and active:
@@ -1319,7 +1324,7 @@ elif "對話練習" in mode:
                 <div style='background:linear-gradient(135deg,#fff8e1,#fffde7);
                             border:2px dashed #FFB703; border-radius:14px;
                             padding:16px 20px; margin:8px 0;'>
-                  <strong style='color:#856404;'>🎤 你嘅回合!</strong>
+                  <strong style='color:#856404;'>&#127908; 你嘅回合!</strong>
                   大聲讀出上面句子，然後喺下面輸入你講嘅內容（或者盡力打出你以為講咗嘅嘢）
                 </div>""", unsafe_allow_html=True)
 
@@ -1331,7 +1336,7 @@ elif "對話練習" in mode:
 
                 c1, c2 = st.columns([2, 1])
                 with c1:
-                    if st.button("✅ 我講咗!AI評分", key=f"eval_{step_key}",
+                    if st.button("&#9989; 我講咗!AI評分", key=f"eval_{step_key}",
                                  use_container_width=True):
                         if spoken.strip():
                             # ── Keyword-based scoring (no API needed) ──
@@ -1382,7 +1387,7 @@ elif "對話練習" in mode:
                             st.warning("請先輸入你講嘅內容再評分!")
 
                 with c2:
-                    if st.button("⏭️ 跳過呢句", key=f"skip_{step_key}",
+                    if st.button("&#9197;️ 跳過呢句", key=f"skip_{step_key}",
                                  use_container_width=True):
                         st.session_state.vp_step = si + 1
                         st.rerun()
@@ -1435,7 +1440,7 @@ elif "對話練習" in mode:
                     st.session_state.vp_done.add(scene_id)
                     add_points(bonus)
                     st.balloons()
-                    st.success(f"🎉 +{bonus}分!")
+                    st.success(f"&#127881; +{bonus}分!")
         with c2:
             if st.button("🔄 再練一次", use_container_width=True):
                 for k in list(st.session_state.vp_scores.keys()):
@@ -1461,10 +1466,10 @@ elif "發音陷阱" in mode:
                 <div>
                   <div style='font-size:1.6rem; font-weight:900; color:#1D3557;'>{trap['word']}</div>
                   <div style='margin:6px 0;'>
-                    <span style='color:#dc3545;'>❌ 錯：</span> <span style='font-size:0.95rem;'>{trap['wrong']}</span>
+                    <span style='color:#dc3545;'>&#10060; 錯：</span> <span style='font-size:0.95rem;'>{trap['wrong']}</span>
                   </div>
                   <div>
-                    <span style='color:#28a745;'>✅ 正：</span> <strong style='font-size:1.05rem; color:#1D3557;'>{trap['right']}</strong>
+                    <span style='color:#28a745;'>&#9989; 正：</span> <strong style='font-size:1.05rem; color:#1D3557;'>{trap['right']}</strong>
                   </div>
                 </div>
                 <div style='font-size:1.5rem;'>{trap['note']}</div>
@@ -1558,7 +1563,7 @@ elif "大挑戰" in mode:
                     st.session_state.quiz_answers[f"mega_{mkey}"] = True
             else:
                 correct = q["options"][q["ans"]]
-                st.markdown(f"<div class='wrong-box'>❌ 答案係：<strong>{correct}</strong> -5分</div>", unsafe_allow_html=True)
+                st.markdown(f"<div class='wrong-box'>&#10060; 答案係：<strong>{correct}</strong> -5分</div>", unsafe_allow_html=True)
                 if f"mega_{mkey}" not in st.session_state.quiz_answers:
                     st.session_state.points = max(0, st.session_state.points - 5)
                     st.session_state.quiz_answers[f"mega_{mkey}"] = False
@@ -1580,7 +1585,7 @@ elif "大挑戰" in mode:
         <div style='text-align:center; padding:30px; background:linear-gradient(135deg,#1D3557,#457B9D); border-radius:20px; color:white;'>
           <div style='font-size:4rem;'>{medal.split()[0]}</div>
           <div style='font-size:1.8rem; font-weight:900; margin:10px 0;'>{medal}</div>
-          <div style='font-size:3rem; font-weight:900;'>⭐ {pts} 分</div>
+          <div style='font-size:3rem; font-weight:900;'>&#11088; {pts} 分</div>
           <div style='font-size:1.1rem; opacity:0.9; margin-top:12px;'>{msg}</div>
         </div>
         """, unsafe_allow_html=True)
@@ -1635,7 +1640,7 @@ elif "對話練習" in mode:
             st.markdown(f"### {sc['title']} - {sc['subtitle']}")
             st.markdown(f"""
             <div class='funfact' style='margin-bottom:8px;'>
-              🎬 <strong>情境：</strong>{sc['scene_desc']}
+              &#127916; <strong>情境：</strong>{sc['scene_desc']}
             </div>
             """, unsafe_allow_html=True)
         with col_exit:
@@ -1688,9 +1693,9 @@ elif "對話練習" in mode:
             """, unsafe_allow_html=True)
 
             pts_earned = max(10, avg // 5)
-            if st.button(f"🎊 領取 +{pts_earned} 積分!", use_container_width=True):
+            if st.button(f"&#127882; 領取 +{pts_earned} 積分!", use_container_width=True):
                 add_points(pts_earned)
-                st.success(f"⭐ +{pts_earned} 分!繼續練習!")
+                st.success(f"&#11088; +{pts_earned} 分!繼續練習!")
                 st.balloons()
 
             if st.button("🔄 再練一次", use_container_width=True):
@@ -1706,10 +1711,10 @@ elif "對話練習" in mode:
             # AI speaks first
             st.markdown(f"""
             <div style='margin:8px 0 4px; font-size:0.8rem; color:#888; margin-left:20px;'>
-              🇬🇧 {sc['ai_role'].split()[0].title()} 說：
+              &#127468;&#127463; {sc['ai_role'].split()[0].title()} 說：
             </div>
             <div class='bubble-uk'>
-              🔊 <strong>{step_data['ai_line']}</strong>
+              &#128266; <strong>{step_data['ai_line']}</strong>
             </div>
             """, unsafe_allow_html=True)
 
@@ -1717,7 +1722,7 @@ elif "對話練習" in mode:
             if step_key in st.session_state.sp_ai_reply:
                 st.markdown(f"""
                 <div style='margin:4px 0 4px; font-size:0.8rem; color:#888; margin-left:20px;'>
-                  💬 AI 回應：
+                  &#128172; AI 回應：
                 </div>
                 <div class='bubble-uk' style='opacity:0.85; font-size:0.95rem;'>
                   {st.session_state.sp_ai_reply[step_key]}
@@ -1727,9 +1732,9 @@ elif "對話練習" in mode:
             # Task prompt
             st.markdown(f"""
             <div class='tip-box' style='margin:16px 0 10px;'>
-              <span class='tip-icon'>🎯</span>
+              <span class='tip-icon'>&#127919;</span>
               <strong>你的任務：</strong>{step_data['prompt_hk']}<br>
-              <span style='font-size:0.85rem; color:#666;'>💡 提示：{step_data['hint']}</span>
+              <span style='font-size:0.85rem; color:#666;'>&#128161; 提示：{step_data['hint']}</span>
             </div>
             """, unsafe_allow_html=True)
 
@@ -1739,7 +1744,7 @@ elif "對話練習" in mode:
               <button onclick="speakText()" style='
                 background:#1D3557; color:white; border:none; border-radius:10px;
                 padding:10px 20px; font-size:0.95rem; cursor:pointer; font-weight:700;'>
-                🔊 聽示範讀音
+                &#128266; 聽示範讀音
               </button>
               <span id="tts-status" style='margin-left:12px; font-size:0.85rem; color:#666;'></span>
             </div>
@@ -1803,11 +1808,11 @@ elif "對話練習" in mode:
 
             <div id="stt-container">
               <button class="mic-btn" id="mic-btn" onclick="toggleRecording()">
-                🎤 按住錄音 開始說話
+                &#127908; 按住錄音 開始說話
               </button>
               <div id="transcript-box">（錄音後你說的話會出現在這裡）</div>
               <div id="submit-wrap">
-                <button id="submit-btn" onclick="submitTranscript()">✅ 提交答案</button>
+                <button id="submit-btn" onclick="submitTranscript()">&#9989; 提交答案</button>
               </div>
             </div>
 
@@ -1827,7 +1832,7 @@ elif "對話練習" in mode:
             function startRecording() {{
               if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {{
                 document.getElementById('transcript-box').innerHTML =
-                  '❌ 你的瀏覽器唔支援語音識別。請用 Chrome 瀏覽器!';
+                  '&#10060; 你的瀏覽器唔支援語音識別。請用 Chrome 瀏覽器!';
                 return;
               }}
               const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -1841,7 +1846,7 @@ elif "對話練習" in mode:
                 finalTranscript = '';
                 const btn = document.getElementById('mic-btn');
                 btn.classList.add('recording');
-                btn.textContent = '⏹ 錄音中... 點擊停止';
+                btn.textContent = '&#9209; 錄音中... 點擊停止';
                 document.getElementById('transcript-box').textContent = '🎙 聆聽中...';
                 document.getElementById('submit-btn').style.display = 'none';
               }};
@@ -1863,7 +1868,7 @@ elif "對話練習" in mode:
                 isRecording = false;
                 const btn = document.getElementById('mic-btn');
                 btn.classList.remove('recording');
-                btn.textContent = '🎤 再錄一次';
+                btn.textContent = '&#127908; 再錄一次';
                 if (finalTranscript.trim()) {{
                   document.getElementById('transcript-box').textContent = '你說：「' + finalTranscript + '」';
                   document.getElementById('submit-btn').style.display = 'inline-block';
@@ -1878,9 +1883,9 @@ elif "對話練習" in mode:
 
               recognition.onerror = (e) => {{
                 isRecording = false;
-                document.getElementById('transcript-box').textContent = '❌ 錄音錯誤：' + e.error + '。請再試。';
+                document.getElementById('transcript-box').textContent = '&#10060; 錄音錯誤：' + e.error + '。請再試。';
                 document.getElementById('mic-btn').classList.remove('recording');
-                document.getElementById('mic-btn').textContent = '🎤 按住錄音 開始說話';
+                document.getElementById('mic-btn').textContent = '&#127908; 按住錄音 開始說話';
               }};
 
               recognition.start();
@@ -1895,7 +1900,7 @@ elif "對話練習" in mode:
                 // Write into a hidden input so Streamlit form can pick it
                 const ta = window.parent.document.querySelector('textarea[data-speech-key="{step_key}"]');
                 document.getElementById('transcript-box').innerHTML =
-                  '✅ 已提交：「' + finalTranscript + '」<br><small style="color:#666">請點擊下方「提交錄音答案」按鈕</small>';
+                  '&#9989; 已提交：「' + finalTranscript + '」<br><small style="color:#666">請點擊下方「提交錄音答案」按鈕</small>';
               }}
             }}
             </script>
@@ -1913,9 +1918,9 @@ elif "對話練習" in mode:
 
             col_submit, col_skip = st.columns([3, 1])
             with col_submit:
-                submit_clicked = st.button("📤 提交答案 + AI評分", key=f"submit_{step_key}", use_container_width=True)
+                submit_clicked = st.button("&#128308; 提交答案 + AI評分", key=f"submit_{step_key}", use_container_width=True)
             with col_skip:
-                skip_clicked = st.button("⏭ 跳過", key=f"skip_{step_key}", use_container_width=True)
+                skip_clicked = st.button("&#9197; 跳過", key=f"skip_{step_key}", use_container_width=True)
 
             if submit_clicked and typed_input.strip():
                 user_said = typed_input.strip()
@@ -1970,11 +1975,11 @@ elif "對話練習" in mode:
                   </div>
                   <hr style='border-color:#f0f0f0; margin:12px 0;'>
                   <div style='font-size:1rem;'>{score_emoji} <strong>{result["verdict"]}</strong></div>
-                  <div style='margin-top:8px; font-size:0.9rem; color:#555;'>🔤 {result["pronunciation_tips"]}</div>
-                  {"<div style='margin-top:6px; font-size:0.9rem; color:#856404; background:#fff3cd; padding:6px 10px; border-radius:8px;'>📝 " + result["grammar_note"] + "</div>" if not result.get("grammar_ok") and result.get("grammar_note") else ""}
+                  <div style='margin-top:8px; font-size:0.9rem; color:#555;'>&#128292; {result["pronunciation_tips"]}</div>
+                  {"<div style='margin-top:6px; font-size:0.9rem; color:#856404; background:#fff3cd; padding:6px 10px; border-radius:8px;'>&#128221; " + result["grammar_note"] + "</div>" if not result.get("grammar_ok") and result.get("grammar_note") else ""}
                   <div style='margin-top:10px; font-size:0.9rem; color:#2DC653; font-weight:700;'>✨ {result["encouragement"]}</div>
                   <div style='margin-top:10px; font-size:0.85rem; color:#888;'>
-                    ✅ 參考答案：<em>{step_data["target_en"]}</em>
+                    &#9989; 參考答案：<em>{step_data["target_en"]}</em>
                   </div>
                 </div>
                 """, unsafe_allow_html=True)
@@ -1982,13 +1987,13 @@ elif "對話練習" in mode:
                 # Tip for this step
                 st.markdown(f"""
                 <div class='tip-box'>
-                  <span class='tip-icon'>💡</span> {step_data['tip']}
+                  <span class='tip-icon'>&#128161;</span> {step_data['tip']}
                 </div>
                 """, unsafe_allow_html=True)
 
                 add_points(max(5, score // 10))
 
-                if st.button("➡️ 下一回合", key=f"next_{step_key}", use_container_width=True):
+                if st.button("&#10145;&#65039; 下一回合", key=f"next_{step_key}", use_container_width=True):
                     st.session_state.sp_step += 1
                     st.rerun()
 
@@ -2159,7 +2164,7 @@ App 首次運行時會自動建立 Sheet，並分享俾 `client_email`。
                   <div style="display:flex;gap:12px;align-items:center;">
                     <span style="font-size:0.8rem;color:#aaa;">{ts}</span>
                     <span style="font-weight:800;color:{color};">{score}分</span>
-                    <span style="font-size:0.8rem;color:#2DC653;">+{pts}⭐</span>
+                    <span style="font-size:0.8rem;color:#2DC653;">+{pts}&#11088;</span>
                   </div>
                 </div>
                 """, unsafe_allow_html=True)
