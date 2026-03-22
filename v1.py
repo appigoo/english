@@ -1293,20 +1293,18 @@ elif "對話練習" in mode:
             # TTS button (browser Web Speech API via st.components)
             tts_col, hint_col = st.columns([1, 2])
             with tts_col:
-                tts_html = f"""
-                <button onclick="
-                  var u=new SpeechSynthesisUtterance('{step['en'].replace("'","\\'")}');
-                  u.lang='en-GB'; u.rate=0.82;
-                  var voices=speechSynthesis.getVoices();
-                  var gb=voices.find(v=>v.lang==='en-GB'&&v.name.includes('Female'));
-                  if(!gb) gb=voices.find(v=>v.lang==='en-GB');
-                  if(gb) u.voice=gb;
-                  speechSynthesis.cancel(); speechSynthesis.speak(u);
-                " style="background:#1D3557;color:white;border:none;border-radius:10px;
-                         padding:8px 18px;cursor:pointer;font-size:0.9rem;font-weight:700;
-                         font-family:inherit;">
-                  ▶ 聆聽示範
-                </button>"""
+                _tts_text = step['en'].replace("'", "&#39;")
+                tts_html = (
+                    "<button onclick=\"var voices=speechSynthesis.getVoices();"
+                    "var gb=voices.find(function(v){return v.lang==='en-GB';});"
+                    "var u=new SpeechSynthesisUtterance('" + _tts_text + "');"
+                    "u.lang='en-GB';u.rate=0.82;if(gb)u.voice=gb;"
+                    "speechSynthesis.cancel();speechSynthesis.speak(u);\" "
+                    "style=\"background:#1D3557;color:white;border:none;"
+                    "border-radius:10px;padding:8px 18px;cursor:pointer;"
+                    "font-size:0.9rem;font-weight:700;font-family:inherit;\">"
+                    "&#9654; &#32085;&#32202;&#31034;&#31684;</button>"
+                )
                 import streamlit.components.v1 as components
                 components.html(tts_html, height=46)
 
